@@ -3,10 +3,11 @@
 #include "dna_hitbox.h"
 
 #include "bn_sprite_items_dna_dot.h"
+#include "bn_sprite_items_dna_harpoon.h"
 
 namespace dna {
     Harpoon::Harpoon(bn::fixed_point starting_pos, bn::fixed speed, bn::size size) :
-    _sprite(bn::sprite_items::dna_dot.create_sprite(starting_pos)), 
+    _sprite(bn::sprite_items::dna_harpoon.create_sprite(starting_pos)), 
     _speed(speed), 
     _hitbox(create_hitbox(_sprite, size)), 
     _size(size) {}
