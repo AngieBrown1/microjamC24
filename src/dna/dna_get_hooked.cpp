@@ -62,6 +62,9 @@ namespace dna {
         } 
 
         bn::erase_if(_enemies, [](const AquaticLife& e) { return e.is_offscreen(); });
+        // Geeks for Geeks Lambda Function - Erase If
+        //  If player has harpoon     Erase an enemy if (reference) aquatic life e's hitbox intersetcs the player's harpoon hitbox
+        if (_player.getHarpoon()) bn::erase_if(_enemies, [&](const AquaticLife& e) { return e.getHitbox().intersects(_player.getHarpoon()->getHitbox()); });
         
         mj::game_result result(_hit, false); 
         return result; 

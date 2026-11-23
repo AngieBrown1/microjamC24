@@ -20,6 +20,8 @@ namespace dna {
 
             bool is_offscreen() const;
             void update(); 
+
+            bn::rect getHitbox() const; 
         private: 
             bn::sprite_ptr _sprite; 
             bn::fixed _speed; 

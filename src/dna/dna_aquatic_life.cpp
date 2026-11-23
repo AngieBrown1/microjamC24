@@ -48,10 +48,14 @@ namespace dna {
 
         _hitbox = create_hitbox(_sprite, _size); 
 
-        return _hitbox.intersects(player.get_hitbox()); 
+        return _hitbox.intersects(player.getHitbox()); 
     }
 
     bool AquaticLife::is_offscreen() const {
         return _sprite.x() < MIN_X - _size.width();
+    }
+
+    bn::rect AquaticLife::getHitbox() const {
+        return _hitbox;
     }
 }

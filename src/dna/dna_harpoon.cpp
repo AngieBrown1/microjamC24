@@ -19,4 +19,8 @@ namespace dna {
     bool Harpoon::is_offscreen() const {
         return _sprite.x() > MAX_X + _size.width(); 
     }
+
+    bn::rect Harpoon::getHitbox() const {
+        return _hitbox; 
+    }
 }
