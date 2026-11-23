@@ -1,6 +1,8 @@
 #include "dna/dna_player.h"
 #include "dna/dna_hitbox.h"
 
+#include "dna_harpoon.h"
+
 #include <bn_keypad.h>
 
 #include "bn_sprite_items_dna_player.h"
@@ -48,6 +50,13 @@ namespace dna {
         }
 
         _hitbox = create_hitbox(_sprite, _size);
+    }
+
+    void Player::_update_harpoon() {
+        if (bn::keypad::a_pressed && !active_harpoon) {
+            active_harpoon = true; 
+            Harpoon harpoon = Harpoon(_sprite.position(), HARPOON_SPEED, HARPOON_SIZE);
+        }
     }
 
     bn::rect Player::get_hitbox() {

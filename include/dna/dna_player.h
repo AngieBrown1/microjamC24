@@ -29,6 +29,9 @@ namespace dna {
             bn::size _size; 
             bn::rect _hitbox;
 
+            bool active_harpoon = false; 
+
             void _update_position(); 
+            void _update_harpoon(); 
     };
 }

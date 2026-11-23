@@ -5,7 +5,7 @@
 
 namespace
 {
-    constexpr bn::string_view code_credits[] = { "kohumukini" };
+    constexpr bn::string_view code_credits[] = { "Kealii Ohumukini", "Angela Brown" };
     constexpr bn::string_view graphics_credits[] = { "" };
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
