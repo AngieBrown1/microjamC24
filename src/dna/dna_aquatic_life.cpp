@@ -18,21 +18,20 @@ namespace dna {
     static constexpr int SPAWN_OFFSET = 5;
 
     AquaticLife::AquaticLife(bn::random &random, bn::fixed speed, bn::size size) :
-    _sprite(Enemy (randEnemy, random)), 
+    _sprite(Enemy(random)), 
     _speed(speed), 
     _hitbox(create_hitbox(_sprite, size)), 
     _size(size) {}
 
 
-     bn::sprite_ptr AquaticLife::Enemy (bn::random &randEnemy, bn::random &random) {
-        randEnemy.get_unbiased_int(2);
+    bn::sprite_ptr AquaticLife::Enemy (bn::random &random) {
+        int random_val = random.get_int(0, 2); 
 
-       if(randEnemy == 0){
-        _sprite(bn::sprite_items::dna_squid.create_sprite(getStartPosition(random)));
-       }else{
-         _sprite(bn::sprite_items::dna_squid.create_sprite(getStartPosition(random)));
-       }
-       return _sprite;
+        if (random_val == 1) {
+            return bn::sprite_items::dna_squid.create_sprite(getStartPosition(random));
+        } else {
+            return bn::sprite_items::dna_shark.create_sprite(getStartPosition(random));
+        }
     }
 
     bn::fixed_point AquaticLife::getStartPosition(bn::random &random) {
