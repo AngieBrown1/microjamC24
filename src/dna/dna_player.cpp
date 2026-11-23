@@ -1,8 +1,6 @@
 #include "dna/dna_player.h"
 #include "dna/dna_hitbox.h"
 
-#include "dna_harpoon.h"
-
 #include <bn_keypad.h>
 
 #include "bn_sprite_items_dna_player.h"
@@ -17,10 +15,11 @@ namespace dna {
     _hitbox(create_hitbox(_sprite, size)) {}
     
     void Player::update() {
-        _update_position(); 
+        _updatePosition(); 
+        _updateHarpoon(); 
     }
 
-    void Player::_update_position() {
+    void Player::_updatePosition() {
         // Player Movement
         if (bn::keypad::left_held()) {
             _sprite.set_x(_sprite.x() - _speed);
@@ -52,14 +51,25 @@ namespace dna {
         _hitbox = create_hitbox(_sprite, _size);
     }
 
-    void Player::_update_harpoon() {
-        if (bn::keypad::a_pressed && !active_harpoon) {
-            active_harpoon = true; 
-            Harpoon harpoon = Harpoon(_sprite.position(), HARPOON_SPEED, HARPOON_SIZE);
+    void Player::_updateHarpoon() {
+        if (bn::keypad::a_pressed() && !_harpoon) {
+            _harpoon.emplace(_sprite.position(), HARPOON_SPEED, HARPOON_SIZE);
+        }
+
+        if (_harpoon) {
+            _harpoon->update();
+            
+            if (_harpoon->is_offscreen()) {
+                _harpoon.reset();
+            }
         }
     }
 
-    bn::rect Player::get_hitbox() {
+    bn::rect Player::getHitbox() const {
         return _hitbox;
+    }
+
+    const bn::optional<Harpoon>& Player::getHarpoon() const {
+        return _harpoon; 
     }
 }

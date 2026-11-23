@@ -18,6 +18,7 @@ namespace dna {
             bool update(Player &player);
             bool is_offscreen() const; 
         
+            bn::rect getHitbox() const; 
             bn::fixed_point getStartPosition(bn::random &random); 
         private: 
             bn::sprite_ptr _sprite;  
