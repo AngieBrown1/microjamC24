@@ -5,8 +5,11 @@
 #include "dna_hitbox.h"
 
 #include "bn_sprite_items_dna_shark.h"
+#include "bn_sprite_items_dna_squid.h"
 
 namespace {
+
+
 
 }
             
@@ -15,16 +18,29 @@ namespace dna {
     static constexpr int SPAWN_OFFSET = 5;
 
     AquaticLife::AquaticLife(bn::random &random, bn::fixed speed, bn::size size) :
-    _sprite(bn::sprite_items::dna_shark.create_sprite(getStartPosition(random))), 
+    _sprite(Enemy (randEnemy, random)), 
     _speed(speed), 
     _hitbox(create_hitbox(_sprite, size)), 
     _size(size) {}
+
+
+     bn::sprite_ptr AquaticLife::Enemy (bn::random &randEnemy, bn::random &random) {
+        randEnemy.get_unbiased_int(2);
+
+       if(randEnemy == 0){
+        _sprite(bn::sprite_items::dna_squid.create_sprite(getStartPosition(random)));
+       }else{
+         _sprite(bn::sprite_items::dna_squid.create_sprite(getStartPosition(random)));
+       }
+       return _sprite;
+    }
 
     bn::fixed_point AquaticLife::getStartPosition(bn::random &random) {
         bn::fixed randY = random.get_fixed(MIN_Y + SPAWN_OFFSET, MAX_Y - SPAWN_OFFSET); 
         bn::fixed startX = MAX_X - SPAWN_OFFSET; 
 
         return bn::fixed_point(startX, randY); 
+    
     }
 
     bool AquaticLife::update(Player &player) {
