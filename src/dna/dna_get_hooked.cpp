@@ -28,7 +28,7 @@ namespace dna {
     static constexpr bn::point PLAYER_START = {-100, 0};
 
     static constexpr int INITIAL_TIMER = 30; 
-    static constexpr int TIMER_OFFSET = 10;
+    static constexpr int TIMER_OFFSET = 8;
 
     dna_get_hooked::dna_get_hooked([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("dna"), 

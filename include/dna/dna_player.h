@@ -33,6 +33,8 @@ namespace dna {
 
             bn::optional<Harpoon> _harpoon; 
 
+            int _cooldown; 
+
             void _updatePosition(); 
             void _updateHarpoon(); 
     };

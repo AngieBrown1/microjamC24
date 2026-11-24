@@ -12,7 +12,8 @@ namespace dna {
     _sprite(bn::sprite_items::dna_player.create_sprite(starting_pos)),
     _speed(speed),
     _size(size), 
-    _hitbox(create_hitbox(_sprite, size)) {}
+    _hitbox(create_hitbox(_sprite, size)),
+    _cooldown(0) {}
     
     void Player::update() {
         _updatePosition(); 
@@ -52,7 +53,9 @@ namespace dna {
     }
 
     void Player::_updateHarpoon() {
-        if (bn::keypad::a_pressed() && !_harpoon) {
+        _cooldown--; 
+
+        if (bn::keypad::a_pressed() && !_harpoon && _cooldown <= 0) {
             _harpoon.emplace(_sprite.position(), HARPOON_SPEED, HARPOON_SIZE);
         }
 
@@ -61,6 +64,7 @@ namespace dna {
             
             if (_harpoon->is_offscreen()) {
                 _harpoon.reset();
+                _cooldown = 60; 
             }
         }
     }
