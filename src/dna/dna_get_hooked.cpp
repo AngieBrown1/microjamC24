@@ -11,10 +11,10 @@ namespace
     constexpr bn::string_view music_credits[] = {""};
 
     bn::fixed enemy_speed(mj::difficulty_level difficulty) {
-        if (difficulty == mj::difficulty_level::EASY) return 3;
-        if (difficulty == mj::difficulty_level::NORMAL) return 6;
+        if (difficulty == mj::difficulty_level::EASY) return 2;
+        if (difficulty == mj::difficulty_level::NORMAL) return 4;
         
-        return 8;
+        return 6;
     }
 }
 
@@ -27,7 +27,7 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace dna {
     static constexpr bn::point PLAYER_START = {-100, 0};
 
-    static constexpr int INITIAL_TIMER = 0; 
+    static constexpr int INITIAL_TIMER = 30; 
     static constexpr int TIMER_OFFSET = 10;
 
     dna_get_hooked::dna_get_hooked([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
